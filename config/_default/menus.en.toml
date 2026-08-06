@@ -31,6 +31,23 @@
   weight = 14
 
 [[main]]
+  name = "Apps"
+  pageRef = "apps"
+  weight = 15
+
+[[main]]
+  name = "NogLog"
+  parent = "Apps"
+  pageRef = "apps/noglog"
+  weight = 16
+
+[[main]]
+  name = "Interstate Tracker"
+  parent = "Apps"
+  pageRef = "apps/interstate-tracker"
+  weight = 17
+
+[[main]]
   name = "Blog"
   pageRef = "blog"
   weight = 20
