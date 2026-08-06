@@ -1,0 +1,22 @@
+locale = "en"
+label = "English"
+weight = 1
+title = "Andrew Parlette"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "January 2, 2006"
+  description = "Personal website of Andrew Parlette — baseball coaching, resources, and notes."
+
+[params.author]
+  name = "Andrew Parlette"
+  email = "andrew@parlette.net"
+  image = "img/avatar.svg"
+  headline = "Youth baseball coach"                      # TODO: your real headline
+  bio = "Coach, and occasional writer about the game."   # TODO: your real one-liner
+  links = [
+    { email = "mailto:andrew@parlette.net" },
+    { github = "https://github.com/aparlette" },
+  ]

@@ -1,0 +1,5 @@
+# Blowfish is pulled in as a Hugo Module (no submodule, no vendored files).
+# Note the /v2 suffix — Blowfish's own go.mod declares that module path.
+# Update the theme with:  hugo mod get -u github.com/nunocoracao/blowfish/v2
+[[imports]]
+  path = "github.com/nunocoracao/blowfish/v2"

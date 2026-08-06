@@ -1,0 +1,44 @@
+# The theme is imported as a Hugo Module — see config/_default/module.toml.
+
+# CI overrides this with the Pages URL at build time. Change to
+# https://andrew.parlette.net/ when the custom domain is cut over.
+baseURL = "https://aparlette.github.io/"
+defaultContentLanguage = "en"   # locale is set per-language in languages.en.toml
+
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 30
+
+buildDrafts = false
+buildFuture = false
+
+[pagination]
+  pagerSize = 10
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]   # JSON output powers the built-in search
+
+[related]
+  threshold = 0
+  toLower = false
+
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+
+  [[related.indices]]
+    name = "categories"
+    weight = 100
+
+  [[related.indices]]
+    name = "date"
+    weight = 10

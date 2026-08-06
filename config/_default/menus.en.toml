@@ -1,0 +1,58 @@
+# -- Nav bar --
+# pageRef points at a content path; weight controls order.
+
+[[main]]
+  name = "Baseball"
+  pageRef = "baseball"
+  weight = 10
+
+[[main]]
+  name = "Philosophy"
+  parent = "Baseball"
+  pageRef = "philosophy-of-coaching"
+  weight = 11
+
+[[main]]
+  name = "Coaching Record"
+  parent = "Baseball"
+  pageRef = "coaching-record"
+  weight = 12
+
+[[main]]
+  name = "Player Profiles"
+  parent = "Baseball"
+  pageRef = "player-profiles"
+  weight = 13
+
+[[main]]
+  name = "Resources"
+  parent = "Baseball"
+  pageRef = "coaching-resources"
+  weight = 14
+
+[[main]]
+  name = "Blog"
+  pageRef = "blog"
+  weight = 20
+
+[[main]]
+  name = "Gallery"
+  pageRef = "photo-gallery"
+  weight = 30
+
+[[main]]
+  name = "About"
+  pageRef = "about"
+  weight = 40
+
+[[main]]
+  name = "Contact"
+  pageRef = "contact"
+  weight = 50
+
+# -- Footer --
+
+[[footer]]
+  name = "Tags"
+  pageRef = "tags"
+  weight = 10
