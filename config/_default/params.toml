@@ -28,7 +28,7 @@ smartTOC = true
 # then the recent-articles list below it.
 [homepage]
   layout = "profile"
-  showRecent = true
+  showRecent = false
   showRecentItems = 3
   showMoreLink = true
   showMoreLinkDest = "blog"

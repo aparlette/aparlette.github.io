@@ -4,14 +4,8 @@ description: "Personal website of Andrew Parlette."
 ---
 
 {{< lead >}}
-Placeholder intro — one or two sentences about who you are and why someone
-landed here. This paragraph sits directly under your avatar and headline.
+My home page. Work in progress... since my first .plan file in 1996.
 {{< /lead >}}
-
-This whole block is the body of `content/_index.md`. Everything you write here
-renders between the profile header above and the recent posts below, so the
-homepage scrolls as one page. Below are cards pointing at the pages that live
-behind the nav bar.
 
 ## Around the site
 
