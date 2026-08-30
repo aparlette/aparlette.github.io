@@ -1,7 +1,7 @@
 # Personal sites platform — design
 
 **Date:** 2026-08-29
-**Status:** approved, in implementation
+**Status:** built on branch `multi-site` 2026-08-29; DNS cutover outstanding
 **Scope:** the `parlette.net` family of personal sites, their shared build system, and
 Cloudflare Workers hosting.
 
