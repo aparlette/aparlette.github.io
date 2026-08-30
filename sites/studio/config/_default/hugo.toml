@@ -1,0 +1,23 @@
+baseURL = "https://studio.parlette.net/"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 30
+
+buildDrafts = false
+buildFuture = false
+
+[pagination]
+  pagerSize = 20
+
+[taxonomies]
+  tag = "tags"
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.6
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

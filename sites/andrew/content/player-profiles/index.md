@@ -2,6 +2,7 @@
 title: "Player Profiles"
 description: "GameChanger profiles."
 showTableOfContents: false
+showDate: false
 ---
 
 GameChanger profiles.

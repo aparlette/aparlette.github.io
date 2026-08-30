@@ -2,6 +2,7 @@
 title: "About"
 description: "About Andrew Parlette."
 showTableOfContents: false
+showDate: false
 ---
 
 ## Elsewhere

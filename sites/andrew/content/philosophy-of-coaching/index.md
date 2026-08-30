@@ -2,6 +2,8 @@
 title: "Philosophy of Coaching"
 description: "Five core principles that guide us on and off the field."
 showTableOfContents: true
+showDate: false
+summary: "Five principles that guide us on and off the field, and what each one asks of a coach and a player."
 ---
 
 My philosophy is rooted in five core principles that guide us on and off the field. These principles aren’t just about playing baseball; they’re about building character, fostering teamwork, and growing together as individuals and as a team.

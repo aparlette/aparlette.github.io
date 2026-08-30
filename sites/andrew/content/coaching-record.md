@@ -2,6 +2,7 @@
 title: "Coaching Record"
 description: "Every team we've coached or played for, by season."
 showTableOfContents: false
+showDate: false
 ---
 
 A list of the teams we've played for.

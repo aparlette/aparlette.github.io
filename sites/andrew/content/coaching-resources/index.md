@@ -2,6 +2,8 @@
 title: "Coaching Resources"
 description: "Books, podcasts, websites, and videos I've learned from."
 showTableOfContents: true
+showDate: false
+summary: "The books, podcasts, websites, and videos I keep going back to, with a note on why each one is worth your time."
 ---
 
 There have been many people and resources that I have learned from over the years, and I constantly seek out people and resources to learn and improve from. While I wasn't able to play at the collegiate level, I've had the opportunity to coach alongside, observe, and learn from others that have played at a higher level of college or professional ball. In addition to this experience, below is a selection of some of the resources that I have found useful to reference and learn from.

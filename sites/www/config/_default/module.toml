@@ -1,0 +1,5 @@
+[[imports]]
+  path = "github.com/nunocoracao/blowfish/v2"
+
+[[imports]]
+  path = "github.com/aparlette/parlette-sites/shared"

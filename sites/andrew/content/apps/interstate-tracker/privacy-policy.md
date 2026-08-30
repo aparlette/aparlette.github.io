@@ -11,6 +11,16 @@ showPagination: false
 sharingLinks: []
 ---
 
+{{< alert "circle-info" >}}
+**This policy is superseded and is kept only so its original URL keeps working.**
+It describes the earlier device-only version of the app, which had no internet
+permission. That is no longer how Interstate Tracker works: the current app
+syncs to a server.
+
+The current, versioned policy is at
+[interstatetracker.com/privacy](https://interstatetracker.com/privacy/).
+{{< /alert >}}
+
 **Last updated: 6 August 2026**
 
 Interstate Tracker records which parts of the U.S. Interstate Highway System you

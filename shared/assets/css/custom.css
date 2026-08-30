@@ -92,12 +92,12 @@ table, .parlette-ledger, .parlette-network {
   border-top: 1px solid var(--parlette-rule);
   padding-top: 0.85rem;
   margin-top: 1.5rem;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--color-neutral-600));
 }
 
 .parlette-network__label {
   display: block;
-  color: rgb(var(--color-neutral-400));
+  color: rgb(var(--color-neutral-600));
   margin-bottom: 0.5rem;
 }
 
@@ -183,7 +183,7 @@ table, .parlette-ledger, .parlette-network {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: left;
-  color: rgb(var(--color-neutral-400));
+  color: rgb(var(--color-neutral-600));
   padding-bottom: 0.6rem;
 }
 
@@ -194,7 +194,7 @@ table, .parlette-ledger, .parlette-network {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: left;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--color-neutral-600));
   border-bottom: 1px solid var(--parlette-rule);
   padding: 0 0.75rem 0.5rem 0;
   white-space: nowrap;
@@ -229,23 +229,27 @@ table, .parlette-ledger, .parlette-network {
   color: rgb(var(--color-neutral-400));
 }
 
+.parlette-ledger__form {
+  font-family: var(--parlette-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgb(var(--color-neutral-600));
+  white-space: nowrap;
+}
+
 .parlette-ledger__status {
   font-family: var(--parlette-mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--color-neutral-600));
 }
 
 /* Only "live" earns the clay. Everything else stays pencil-gray, because
    overstating status is the one thing this table exists to prevent. */
 .parlette-ledger__status--live {
   color: rgb(var(--color-secondary-600));
-}
-
-.dark .parlette-ledger__status--live {
-  color: rgb(var(--color-secondary-400));
 }
 
 @media (max-width: 640px) {
@@ -262,6 +266,22 @@ table, .parlette-ledger, .parlette-network {
     border: 0;
     padding: 0.1rem 0;
   }
+}
+
+/* Dark mode inverts the contrast problem: neutral-600 is too dark on the dark
+   ground, so small text goes back up to neutral-400, which clears 4.5:1 there. */
+.dark .parlette-network__label,
+.dark .parlette-ledger caption,
+.dark .parlette-ledger th,
+.dark .parlette-ledger__form,
+.dark .parlette-ledger__status {
+  color: rgb(var(--color-neutral-400));
+}
+
+/* Stated after the group above on purpose: same specificity, so order is what
+   keeps the one live row accented in dark mode. */
+.dark .parlette-ledger__status--live {
+  color: rgb(var(--color-secondary-400));
 }
 
 @media (prefers-reduced-motion: reduce) {

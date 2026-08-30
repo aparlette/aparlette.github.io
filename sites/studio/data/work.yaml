@@ -1,0 +1,58 @@
+# The work ledger, rendered by the {{< ledger >}} shortcode.
+#
+# `status` is the one field that must never be generous. It says what a
+# visitor can actually do with the thing today, not what it will be. Only
+# entries genuinely usable by someone other than Andrew get live: true, which
+# is the only thing that earns the clay accent in the table.
+#
+# Keep this list ordered the way it should read: what is real first.
+
+projects:
+  - name: Interstate Tracker
+    slug: interstate-tracker
+    what: Tracks which stretches of the Interstate Highway System you have driven, and maps what is left.
+    status: Live — web
+    live: true
+    form: Web app, sync API, Android
+
+  - name: Grid
+    slug: grid
+    what: Makes personal AI agents running on different machines behave like one team, with one roster and one dashboard.
+    status: Working — v0.1.0
+    live: false
+    form: CLI and daemon
+
+  - name: Memory Drop
+    slug: memory-drop
+    what: Let 33 graduating families upload full-resolution photos from a phone in under a minute, for one night's slideshow.
+    status: Shipped — April 2026
+    live: false
+    form: Web app
+
+  - name: NogLog
+    slug: noglog
+    what: Logs eggnog tastings — brands, reviews, ratings, and homemade recipes.
+    status: In development
+    live: false
+    form: Web app and Android
+
+  - name: Pitch Chart
+    slug: pitch-chart
+    what: Charts every pitch of a baseball game and recalls a batter's history from the dugout, with no signal needed.
+    status: In development
+    live: false
+    form: Android app
+
+  - name: LensCalc
+    slug: lenscalc
+    what: Five field calculators for photographers — depth of field, field of view, exposure, crop factor, and subject size in frame.
+    status: Built — not yet published
+    live: false
+    form: Web app
+
+  - name: IsoReel
+    slug: isoreel
+    what: Cuts clips from multi-camera game footage frame by frame, tagged by player and play, without re-encoding.
+    status: Early development
+    live: false
+    form: Windows desktop

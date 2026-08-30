@@ -1,0 +1,36 @@
+{{/* The work ledger. Rows are ruled like a scorebook line; the status column
+     is the point of the table, so it gets its own heading rather than a badge
+     tucked beside the name. Data lives in data/work.yaml. A row links to its
+     project page when one exists, and stays plain text when it does not. */}}
+<table class="parlette-ledger">
+  <caption>{{ .Get "caption" | default "The workbench" }}</caption>
+  <thead>
+    <tr>
+      <th scope="col">Project</th>
+      <th scope="col">What it does</th>
+      <th scope="col">Form</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range hugo.Data.work.projects }}
+      {{ $project := . }}
+      {{ $page := site.GetPage (printf "/work/%s" $project.slug) }}
+      <tr>
+        <td class="parlette-ledger__name">
+          {{ if $page }}
+            <a href="{{ $page.RelPermalink }}">{{ $project.name }}</a>
+          {{ else }}
+            {{ $project.name }}
+          {{ end }}
+        </td>
+        <td class="parlette-ledger__what">{{ $project.what }}</td>
+        <td class="parlette-ledger__form">{{ $project.form }}</td>
+        <td
+          class="parlette-ledger__status{{ if $project.live }} parlette-ledger__status--live{{ end }}">
+          {{ $project.status }}
+        </td>
+      </tr>
+    {{ end }}
+  </tbody>
+</table>

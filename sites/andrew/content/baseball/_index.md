@@ -3,6 +3,8 @@ title: "Baseball"
 description: "The home of Parlette Baseball — our teams, seasons, and reference material."
 cascade:
   showReadingTime: true
+showDate: false
+summary: "The teams we are part of — the Rockbridge Scots and the Elkridge Hurricanes — and the reference material that goes with them."
 ---
 
 Welcome to the home of Parlette Baseball!

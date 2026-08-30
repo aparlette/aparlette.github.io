@@ -2,6 +2,8 @@
 title: "Photo Gallery"
 description: "Photos."
 showTableOfContents: false
+showDate: false
+summary: "Seven frames from a getaway to the New River Gorge, and where the rest of the photographs live."
 ---
 
 ## WV New River Gorge NP Getaway
