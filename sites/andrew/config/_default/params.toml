@@ -1,4 +1,4 @@
-colorScheme = "blowfish"          # try: blowfish, avocado, fire, forest, princess, neon, bloody, terminal, marvel, noir, autumn, congo, slate
+colorScheme = "parlette"          # shared Parlette scheme, see shared/assets/css/schemes/
 defaultAppearance = "light"
 autoSwitchAppearance = true
 
@@ -63,3 +63,9 @@ smartTOC = true
 
 [fathomAnalytics]
   # unused
+
+# -- Shared Parlette layer --
+# `site` must match a key in shared/data/parlette.yaml so the network strip in
+# the footer knows which entry to mark as current.
+[parlette]
+  site = "andrew"

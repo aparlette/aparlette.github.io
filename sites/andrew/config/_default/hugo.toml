@@ -1,8 +1,6 @@
 # The theme is imported as a Hugo Module — see config/_default/module.toml.
 
-# CI overrides this with the Pages URL at build time. Change to
-# https://andrew.parlette.net/ when the custom domain is cut over.
-baseURL = "https://aparlette.github.io/"
+baseURL = "https://andrew.parlette.net/"
 defaultContentLanguage = "en"   # locale is set per-language in languages.en.toml
 
 enableRobotsTXT = true

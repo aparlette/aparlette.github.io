@@ -1,11 +1,16 @@
 # Hugo build output
-/public/
-/resources/_gen/
-/assets/jsconfig.json
+public/
+resources/_gen/
+assets/jsconfig.json
 .hugo_build.lock
 
-# Hugo module cache (when vendoring locally)
-/_vendor/
+# Hugo module vendoring
+_vendor/
+
+# Node / wrangler
+node_modules/
+.wrangler/
+.dev.vars
 
 # OS / editor cruft
 .DS_Store
