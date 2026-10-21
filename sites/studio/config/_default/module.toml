@@ -15,3 +15,13 @@
   source = "brand/logo"
   target = "static/brand/logo"
   files = ["! src/**"]
+
+# The photo backdrop masters are image-processed into web sizes, so they are
+# mounted as assets. As with static, that replaces the default assets mount.
+[[mounts]]
+  source = "assets"
+  target = "assets"
+
+[[mounts]]
+  source = "brand/imagery/photos"
+  target = "assets/photos"

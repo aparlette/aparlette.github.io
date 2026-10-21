@@ -5,8 +5,7 @@
   static/favicon.svg       navy tile with the reverse mark
   static/favicon-*.png, favicon.ico, apple-touch-icon.png, android-chrome-*.png
   static/site.webmanifest
-  layouts/partials/studio/hero-drawing.html
-                           the mark as a construction drawing for the home hero
+  assets/img/lockup.svg    the primary lockup the same way, centred on the home hero photo
 
 usage: python3 site_assets.py <logo dir> <site dir> <vectorcraft-cli>"""
 import io, json, pathlib, re, subprocess, sys, tempfile
@@ -19,13 +18,14 @@ def paths_of(svg):
     w, h = map(float, re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', src).groups())
     return w, h, re.findall(r"<path[^>]*/>", src)
 
-def header_logo(logo, site):
-    w, h, paths = paths_of(logo / "parlette-studios-horizontal.svg")
+def themed(logo, site, src, dest, cls):
+    """Copy a logo with its fills replaced by classes, so CSS can recolour it."""
+    w, h, paths = paths_of(logo / src)
     body = "".join(paths).replace(f'fill="{NAVY}"', 'class="ps-ink"').replace(f'fill="{STEEL}"', 'class="ps-steel"')
-    out = site / "assets/img/logo.svg"
+    out = site / dest
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:g} {h:g}" '
-                   f'class="ps-logo" aria-hidden="true" focusable="false">{body}</svg>\n')
+                   f'class="{cls}" aria-hidden="true" focusable="false">{body}</svg>\n')
 
 def tile(logo, rounded, pad):
     """Navy square, 100 units, with the reverse mark centred inside `pad`."""
@@ -68,22 +68,8 @@ def favicons(logo, site, vc):
         "display": "standalone",
     }, indent=2) + "\n")
 
-def hero_drawing(logo, site):
-    src = (logo / "parlette-studios-mark.svg").read_text()
-    vb = re.search(r'viewBox="([^"]+)"', src).group(1)
-    ink = re.search(rf'<path d="([^"]+)" fill="{NAVY}"', src).group(1)
-    ring = re.search(rf'<path d="([^"]+)" fill="{STEEL}"', src).group(1)
-    (site / "layouts/partials/studio/hero-drawing.html").write_text(
-        "{{/* The mark as a construction drawing: the ring solid, the P traced in a\n"
-        "     hairline. Written by brand/logo/src/site_assets.py; colour comes from\n"
-        "     the parent through currentColor. */}}\n"
-        f'<svg class="ps-hero__ring" viewBox="{vb}" aria-hidden="true" focusable="false">'
-        f'<path d="{ring}" fill="currentColor"/>'
-        f'<path d="{ink}" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/>'
-        "</svg>\n")
-
 if __name__ == "__main__":
     logo, site, vc = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2]), sys.argv[3]
-    header_logo(logo, site)
+    themed(logo, site, "parlette-studios-horizontal.svg", "assets/img/logo.svg", "ps-logo")
+    themed(logo, site, "parlette-studios-lockup.svg", "assets/img/lockup.svg", "ps-lockup")
     favicons(logo, site, vc)
-    hero_drawing(logo, site)

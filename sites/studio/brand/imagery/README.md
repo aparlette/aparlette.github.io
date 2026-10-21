@@ -1,12 +1,32 @@
-# Decorative imagery
+# Imagery
 
-These are AI-generated illustrations, used on the site only as decoration
-(backdrops, the social card). They are never presented as photography.
-Andrew's photographs come from his own archive.
+## Photo backdrops
+
+Andrew's own photographs, graded into the palette for use behind the logo or
+words. `photos/` holds 5120 × 2880 masters, each plain and with a centre lift
+toward Soft White (`-vignette`). The site makes its web sizes from them at
+build time; `config/_default/module.toml` mounts `photos/` as `assets/photos/`.
+
+| File | Photograph | Used for |
+|---|---|---|
+| `photos/grinnell-trail*.jpg` | [Overlook from Grinnell Trail, Glacier National Park](https://www.flickr.com/photos/aparlette/51806978445/) | Home page hero (the vignette version) |
+| `photos/blue-ridge*.jpg` | [Blue Ridge Mountains](https://www.flickr.com/photos/aparlette/52460143426/) | Spare |
+| `photos/lake-mcdonald*.jpg` | [Sunrise over Lake McDonald, Glacier National Park](https://www.flickr.com/photos/aparlette/52633885111/) | Spare |
+
+`photo_backdrops.py` downloads the originals from Flickr and rebuilds all six
+masters: crop, grade and vignette settings are in the script. It needs numpy
+and Pillow.
+
+```sh
+python3 brand/imagery/photo_backdrops.py /tmp/originals
+```
+
+## AI-generated illustration
+
+Used only as decoration. Never presented as photography.
 
 | File | Used for | Generated with |
 |---|---|---|
-| `hero-fog.png` | Home page hero backdrop (`assets/img/hero-backdrop.jpg`) | Juggernaut XL, prompt `hero-fog`, seed 23 |
 | `dark-arc.png` | Social card background (`assets/img/social.png`) | Juggernaut XL, prompt `dark-lines`, seed 11 |
 
 All were rendered on pompom's ComfyUI with `comfy.py`, which holds the exact

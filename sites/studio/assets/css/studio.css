@@ -204,46 +204,64 @@ button:focus-visible {
 }
 
 /* --- Hero -----------------------------------------------------------------
-   Words on the left, the ring's geometry on the right, and a decorative
-   image fading in behind it. The image is illustration, never photography
-   presented as Andrew's (see the brand guide). */
+   A full-width band of Andrew's own photograph (graded toward the palette,
+   with a soft lift behind the logo baked in), the primary lockup centred on
+   it, then the words below. In dark mode a navy veil drops over the photo and
+   the lockup turns to its reverse colours. */
 
-.ps-hero {
+/* The band is wider than its container; clip, so a classic scrollbar's width
+   can't open a sideways scroll. */
+body {
+  overflow-x: clip;
+}
+
+.ps-hero-photo {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2rem;
-  padding: clamp(2rem, 6vw, 4.5rem) 0 var(--ps-space-section);
-}
-
-.ps-hero__backdrop {
-  position: absolute;
-  inset: -2rem calc(50% - 50vw) 0;
-  z-index: -1;
+  place-items: center;
+  margin-inline: calc(50% - 50vw);
+  /* Blowfish's fixed header leaves a 148px spacer for a bar about 60px tall;
+     start the band just under the bar instead. */
+  margin-top: -4.5rem;
+  /* 16:9 where there's room, never shorter than 22rem or taller than 80vh. */
+  height: clamp(22rem, 56.25vw, 80vh);
   overflow: hidden;
-  pointer-events: none;
 }
 
-.ps-hero__backdrop img {
+.ps-hero-photo img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center;
-  opacity: 0.55;
-  /* One soft ellipse centred behind the drawing: clear behind the words,
-     and no hard edge anywhere. */
-  -webkit-mask-image: radial-gradient(ellipse 60% 52% at 70% 48%, #000 30%, transparent 100%);
-  mask-image: radial-gradient(ellipse 60% 52% at 70% 48%, #000 30%, transparent 100%);
+  /* Phones see the empty valley; wider screens reach the figure on the right. */
+  object-position: 45% 45%;
 }
 
-.dark .ps-hero__backdrop img {
-  opacity: 0.18;
-  filter: grayscale(0.4);
+.dark .ps-hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(var(--ps-navy) / 0.62);
 }
 
-.ps-hero__text {
-  max-width: 38rem;
+.ps-hero-photo__logo {
+  width: clamp(14rem, 34vw, 32rem);
+  margin-bottom: 4%;
+}
+
+.ps-hero-photo__logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ps-hero {
+  max-width: 40rem;
+  padding: clamp(2.5rem, 6vw, 4rem) 0 var(--ps-space-section);
 }
 
 .ps-hero__title {
@@ -277,28 +295,6 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2rem;
-}
-
-.ps-hero__ring {
-  display: none;
-  color: rgb(var(--ps-steel));
-}
-
-.dark .ps-hero__ring {
-  color: rgb(var(--ps-light-steel));
-}
-
-@media (min-width: 900px) {
-  .ps-hero {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    align-items: center;
-  }
-  .ps-hero__ring {
-    display: block;
-    justify-self: end;
-    width: min(100%, 22rem);
-    opacity: 0.9;
-  }
 }
 
 /* --- Pillars --------------------------------------------------------------

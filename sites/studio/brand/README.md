@@ -8,7 +8,7 @@ stays part of the parlette.net network (the shared footer stays).
 This folder is source material. `logo/` is also published at `/brand/logo/` (minus
 `src/`) so the site's [brand page](https://studio.parlette.net/brand/) can show and offer
 the files. That page is the visual version of this guide. The build scripts write the
-logo files the site itself uses (header logo, favicons, hero drawing); see *Rebuilding
+logo files the site itself uses (header and hero logos, favicons); see *Rebuilding
 the logo*.
 
 > **Parlette Studios is an independent creative studio for software, photography, and
@@ -182,9 +182,19 @@ Use them in Steel (Light Steel on dark) next to labels, never as decoration on t
   social card, placeholders. It must stay in the palette: cool steel and slate, high key
   or deep navy, with vast negative space. `imagery/` holds the sources, the prompts and
   the script (local ComfyUI on pompom).
-- The home hero backdrop (`assets/img/hero-backdrop.jpg`) sits at 55% opacity behind a
-  soft radial mask (18% and desaturated in dark mode), so it never competes with the
-  words.
+- **Photo backdrops** are Andrew's own photographs graded into the palette, for the
+  logo or words to sit on: nearly colourless, toned from slate to Soft White, low
+  contrast with no true blacks, and hazier toward the sky. Each comes plain and with a
+  soft centre lift toward Soft White (`-vignette`) behind where a logo goes.
+  `imagery/photos/` holds the 5120 × 2880 masters; `imagery/photo_backdrops.py` rebuilds
+  them from the originals on Flickr. Web sizes are made from the masters at build time.
+  - `grinnell-trail`: the home hero, with the primary lockup centred on it. Andrew is
+    the figure on the right; phones crop to the valley. A navy veil covers it in dark
+    mode.
+  - `blue-ridge` and `lake-mcdonald` (which keeps its sunburst): spares for the social
+    card, print, and other backdrops.
+- A photo used as a backdrop is a brand graphic, so the logo may sit on it. Photographs
+  shown *as photography* keep the logo out of the frame, apart from the watermark.
 - The social card (`assets/img/social.png`, 1200 × 630) is the reverse horizontal lockup
   on a navy horizon. `imagery/social_card.py` rebuilds it.
 
@@ -222,7 +232,7 @@ sites/studio/brand/logo/src/build.sh    # optional arg: path to vectorcraft-cli
 It runs `generate.py`, has VectorCraft unite each colour into one path and trim the
 artboard, writes the colour variants (the same paths with their fills swapped), then the
 padded PNGs (`export_png.py`) and PDFs. Finally `site_assets.py` writes what the site uses:
-the theme-aware header logo, the favicons and web manifest, and the hero drawing. You
+the theme-aware header logo and hero lockup, and the favicons and web manifest. You
 can also edit the `.vectorcraft` files directly in VectorCraft.
 
 The concept boards this system came from were AI-generated mockups. They are references

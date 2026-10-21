@@ -75,9 +75,14 @@ need a grid, cards are a hairline border with no shadow.
 ## Imagery
 
 Photography is Andrew's own, shown with plenty of negative space and the logo
-kept out of the frame. Some decorative images on this site, like the misty
-backdrop on the home page, are AI-generated illustrations. They are never
-presented as photography.
+kept out of the frame.
+
+For backdrops, his photographs are graded into the palette: nearly colourless,
+toned from slate to soft white, low contrast and hazy, with a gentle lift in
+the centre for the logo to sit on. The home page uses one from the Grinnell
+Glacier Trail in Glacier National Park; that's Andrew on the ledge. A few
+decorative images, like the social card's background, are AI-generated
+illustrations. They are never presented as photography.
 
 The watermark on finished photographs is the mark alone, white or black at low
 opacity, small, in a corner: a signature, not an advertisement.

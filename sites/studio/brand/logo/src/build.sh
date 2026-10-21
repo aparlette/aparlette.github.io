@@ -7,7 +7,7 @@
 # 2. VectorCraft unites each colour into one path and trims the artboard.
 # 3. Colour variants are the same paths with fills swapped.
 # 4. export_png.py makes padded PNGs; VectorCraft makes the PDFs.
-# 5. The site gets a theme-aware header logo and favicons.
+# 5. The site gets theme-aware header and hero logos, and favicons.
 set -euo pipefail
 
 VC=${1:-/projects/external/ArtCraft/vectorcraft/target/release/vectorcraft-cli}

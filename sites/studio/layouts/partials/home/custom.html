@@ -1,24 +1,35 @@
-{{/* Studio home: hero, the three pillars, then the page's own content (the
-     ledger and the notes around it), closed by the philosophy line. Words for
-     the hero and pillars live in content/_index.md front matter. */}}
-<section class="ps-hero">
-  {{ with resources.Get "img/hero-backdrop.jpg" }}
-    {{ with .Resize "1600x webp q72" }}
-      <div class="ps-hero__backdrop" aria-hidden="true">
-        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="eager" decoding="async">
-      </div>
+{{/* Studio home: the photo hero with the lockup on it, the words, the three
+     pillars, then the page's own content (the ledger and the notes around it),
+     closed by the philosophy line. Words for the hero and pillars live in
+     content/_index.md front matter. */}}
+<section class="ps-hero-photo">
+  {{ with resources.Get "photos/grinnell-trail-vignette.jpg" }}
+    {{ $photo := . }}
+    {{ $set := slice }}
+    {{ range slice 960 1600 2560 3840 }}
+      {{ with $photo.Resize (printf "%dx webp q78" .) }}
+        {{ $set = $set | append (printf "%s %dw" .RelPermalink .Width) }}
+      {{ end }}
     {{ end }}
+    {{ $fallback := .Resize "1600x webp q78" }}
+    <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $set ", " }}" sizes="100vw"
+      width="{{ $fallback.Width }}" height="{{ $fallback.Height }}"
+      alt="Andrew Parlette on the Grinnell Glacier Trail, Glacier National Park, looking out over a hazy valley"
+      loading="eager" fetchpriority="high" decoding="async">
   {{ end }}
-  <div class="ps-hero__text">
-    {{ with .Params.descriptor }}<p class="ps-label">{{ . }}</p>{{ end }}
-    <h1 class="ps-hero__title">{{ .Title }}</h1>
-    {{ with .Params.lede }}<p class="ps-hero__lede">{{ . }}</p>{{ end }}
-    <div class="ps-hero__actions">
-      <a class="ps-button" href="{{ "work/" | relLangURL }}">See the work</a>
-      <a class="ps-button ps-button--ghost" href="{{ "photography/" | relLangURL }}">Photography</a>
-    </div>
+  {{ with resources.Get "img/lockup.svg" }}
+    <div class="ps-hero-photo__logo" role="img" aria-label="Parlette Studios">{{ .Content | safeHTML }}</div>
+  {{ end }}
+</section>
+
+<section class="ps-hero">
+  {{ with .Params.descriptor }}<p class="ps-label">{{ . }}</p>{{ end }}
+  <h1 class="ps-hero__title">{{ .Title }}</h1>
+  {{ with .Params.lede }}<p class="ps-hero__lede">{{ . }}</p>{{ end }}
+  <div class="ps-hero__actions">
+    <a class="ps-button" href="{{ "work/" | relLangURL }}">See the work</a>
+    <a class="ps-button ps-button--ghost" href="{{ "photography/" | relLangURL }}">Photography</a>
   </div>
-  {{ partial "studio/hero-drawing.html" . }}
 </section>
 
 {{ with .Params.pillars }}
