@@ -1,4 +1,7 @@
-colorScheme = "parlette"
+colorScheme = "studio"            # Parlette Studios scheme, see assets/css/schemes/ and brand/README.md
+logo = "img/logo.svg"              # horizontal lockup, made by brand/logo/src/build.sh
+disableTextInHeader = true         # the logo already says Parlette Studios
+defaultSocialImage = "img/social.png"
 defaultAppearance = "light"
 autoSwitchAppearance = true
 
@@ -23,7 +26,7 @@ smartTOC = true
   showScrollToTop = true
 
 [homepage]
-  layout = "page"     # the ledger is the landing page; no card grid
+  layout = "custom"   # partials/home/custom.html: hero, pillars, then the ledger
   showRecent = false
 
 [article]

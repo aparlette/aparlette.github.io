@@ -1,6 +1,6 @@
 # Hugo build output
 public/
-resources/_gen/
+**/resources/_gen/
 assets/jsconfig.json
 .hugo_build.lock
 
@@ -16,3 +16,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.swp
+
+# Scratch files (mockups, experiments) — not part of any site
+tmp/
+__pycache__/

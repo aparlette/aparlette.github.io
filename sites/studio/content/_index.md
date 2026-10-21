@@ -1,6 +1,19 @@
 ---
 title: "Software that keeps track of things"
 description: "Software and photography by Andrew Parlette."
+descriptor: "Software • Photography • Digital Creation"
+lede: "Parlette Studios is an independent creative studio for software, photography, and digital projects."
+philosophy: "Create thoughtfully. Build well. Keep exploring."
+pillars:
+  - name: Software
+    icon: ps-software
+    line: Tools that solve a real problem, described honestly.
+  - name: Photography
+    icon: ps-photography
+    line: Capturing moments, and the tools for making them.
+  - name: Digital creation
+    icon: ps-digital
+    line: Exploring what's next, one small build at a time.
 ---
 
 Almost everything here started the same way: something worth remembering, and

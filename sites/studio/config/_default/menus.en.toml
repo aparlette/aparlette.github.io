@@ -12,3 +12,8 @@
   name = "About"
   pageRef = "about"
   weight = 30
+
+[[footer]]
+  name = "Brand"
+  pageRef = "brand"
+  weight = 10

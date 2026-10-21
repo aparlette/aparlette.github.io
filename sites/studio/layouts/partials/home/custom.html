@@ -1,0 +1,42 @@
+{{/* Studio home: hero, the three pillars, then the page's own content (the
+     ledger and the notes around it), closed by the philosophy line. Words for
+     the hero and pillars live in content/_index.md front matter. */}}
+<section class="ps-hero">
+  {{ with resources.Get "img/hero-backdrop.jpg" }}
+    {{ with .Resize "1600x webp q72" }}
+      <div class="ps-hero__backdrop" aria-hidden="true">
+        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="eager" decoding="async">
+      </div>
+    {{ end }}
+  {{ end }}
+  <div class="ps-hero__text">
+    {{ with .Params.descriptor }}<p class="ps-label">{{ . }}</p>{{ end }}
+    <h1 class="ps-hero__title">{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="ps-hero__lede">{{ . }}</p>{{ end }}
+    <div class="ps-hero__actions">
+      <a class="ps-button" href="{{ "work/" | relLangURL }}">See the work</a>
+      <a class="ps-button ps-button--ghost" href="{{ "photography/" | relLangURL }}">Photography</a>
+    </div>
+  </div>
+  {{ partial "studio/hero-drawing.html" . }}
+</section>
+
+{{ with .Params.pillars }}
+  <ul class="ps-pillars" aria-label="What the studio does">
+    {{ range . }}
+      <li class="ps-pillar">
+        {{ partial "icon.html" .icon }}
+        <h2 class="ps-pillar__name">{{ .name }}</h2>
+        <p class="ps-pillar__line">{{ .line }}</p>
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+
+<article class="max-w-full prose dark:prose-invert">
+  <section class="w-full">{{ .Content }}</section>
+</article>
+
+{{ with .Params.philosophy }}
+  <div class="ps-philosophy"><p>{{ . }}</p></div>
+{{ end }}

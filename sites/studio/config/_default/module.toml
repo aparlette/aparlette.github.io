@@ -3,3 +3,15 @@
 
 [[imports]]
   path = "github.com/aparlette/parlette-sites/shared"
+
+# The logo files in brand/logo/ are published at /brand/logo/ so the brand page
+# can show them and people can download them. Declaring a static mount replaces
+# Hugo's default one, so the site's own static/ is mounted explicitly too.
+[[mounts]]
+  source = "static"
+  target = "static"
+
+[[mounts]]
+  source = "brand/logo"
+  target = "static/brand/logo"
+  files = ["! src/**"]

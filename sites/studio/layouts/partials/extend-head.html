@@ -1,0 +1,23 @@
+{{/* Studio's head additions. Replaces the shared partial of the same name, so
+     the shared Archivo preload is swapped for Studio's width-capable build.
+     studio.css loads after Blowfish's bundle (which carries the shared
+     custom.css), so its rules win at equal specificity. */}}
+<link
+  rel="preload"
+  href="/fonts/archivo-latin-standard-normal.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin>
+<link
+  rel="preload"
+  href="/fonts/plex-sans-var-latin.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin>
+{{ $alg := site.Params.fingerprintAlgorithm | default "sha512" }}
+{{ with resources.Get "css/studio.css" | resources.Minify | resources.Fingerprint $alg }}
+  <link
+    rel="stylesheet"
+    href="{{ .RelPermalink }}"
+    integrity="{{ .Data.Integrity }}">
+{{ end }}

@@ -1,0 +1,651 @@
+/* ===========================================================================
+   Parlette Studios — the Studio layer.
+   Loaded after the shared Parlette layer (shared/assets/css/custom.css), by
+   this site's partials/extend-head.html. The shared layer keeps doing the
+   network strip and the ledger's structure; this file swaps the type, retunes
+   the ledger, and adds the Studio components. Rules: sites/studio/brand/README.md.
+   =========================================================================== */
+
+/* --- Type -----------------------------------------------------------------
+   The parlette.net family's faces: Archivo for headings and labels, IBM Plex
+   Sans for everything read at length, Plex Mono for code. All come from the
+   shared layer except Archivo, which Studio self-hosts in the full variable
+   build: the shared file has weight only, and Studio's labels use the width
+   axis (wider, like STUDIOS in the wordmark). Declared after the shared face
+   of the same name, so this one is used and the shared file isn't fetched. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("/fonts/archivo-latin-standard-normal.woff2") format("woff2-variations");
+}
+
+:root {
+  /* Brand colours by name, for the places a scheme step would hide intent. */
+  --ps-navy: 15 23 32;
+  --ps-slate: 51 65 85;
+  --ps-steel: 100 116 139;
+  --ps-light-steel: 148 163 184;
+  --ps-cool-gray: 209 213 219;
+  --ps-soft-white: 248 250 252;
+  --ps-signal: 59 130 246;
+
+  /* Spacing runs on a 4px base; sections breathe at the large end. */
+  --ps-space-section: clamp(3.5rem, 8vw, 6rem);
+  --ps-radius: 2px;
+  --ps-rule: rgb(var(--ps-cool-gray));
+  --ps-label-tracking: 0.24em;
+  --ps-label-stretch: 112%;
+}
+
+.dark {
+  --ps-rule: rgb(var(--ps-slate));
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-display {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.prose h1 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.prose h2 {
+  font-weight: 600;
+}
+
+/* A label: the STUDIOS treatment, used for eyebrows, captions and table heads. */
+.ps-label {
+  font-family: var(--parlette-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--ps-label-tracking);
+  font-stretch: var(--ps-label-stretch);
+  text-transform: uppercase;
+  color: rgb(var(--ps-steel));
+}
+
+.dark .ps-label {
+  color: rgb(var(--ps-light-steel));
+}
+
+/* --- Links ----------------------------------------------------------------
+   Signal Blue at the shade that reads as text; a thin underline that firms
+   up on hover rather than a colour flip. */
+
+.prose :where(a):not(:where(.not-prose, .not-prose *)) {
+  color: rgb(var(--color-primary-600));
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgb(var(--color-primary-600) / 0.35);
+  transition: text-decoration-color 120ms ease;
+}
+
+.prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
+  text-decoration-color: currentColor;
+}
+
+.dark .prose :where(a):not(:where(.not-prose, .not-prose *)) {
+  color: rgb(var(--color-primary-400));
+  text-decoration-color: rgb(var(--color-primary-400) / 0.4);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgb(var(--ps-signal));
+  outline-offset: 3px;
+  border-radius: var(--ps-radius);
+}
+
+.prose hr {
+  border-color: var(--ps-rule);
+}
+
+/* --- Header logo ----------------------------------------------------------
+   logo.svg is inlined by Blowfish, so its two fills are classes and follow
+   the theme: navy and steel on light, white and light steel on dark. */
+
+/* Blowfish sizes `.logo svg` as a 5rem square, built for square marks; the
+   lockup is wide, so set the height and let the width follow. */
+.logo .ps-logo {
+  display: block;
+  height: 2.5rem;
+  width: auto;
+}
+
+.ps-ink {
+  fill: rgb(var(--ps-navy));
+}
+
+.ps-steel {
+  fill: rgb(var(--ps-steel));
+}
+
+.dark .ps-ink {
+  fill: #fff;
+}
+
+.dark .ps-steel {
+  fill: rgb(var(--ps-light-steel));
+}
+
+@media (max-width: 480px) {
+  .logo .ps-logo {
+    height: 2rem;
+  }
+}
+
+/* --- Buttons --------------------------------------------------------------
+   Solid navy for the one thing to do next, an outline for the alternative.
+   Square-shouldered, label type, no shadow. */
+
+.ps-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--parlette-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  font-stretch: var(--ps-label-stretch);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgb(var(--ps-navy));
+  border-radius: var(--ps-radius);
+  background: rgb(var(--ps-navy));
+  color: rgb(var(--ps-soft-white));
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.ps-button:hover {
+  background: rgb(var(--ps-slate));
+  border-color: rgb(var(--ps-slate));
+}
+
+.ps-button--ghost {
+  background: transparent;
+  color: rgb(var(--ps-navy));
+  border-color: rgb(var(--ps-cool-gray));
+}
+
+.ps-button--ghost:hover {
+  background: transparent;
+  border-color: rgb(var(--ps-navy));
+}
+
+.dark .ps-button {
+  background: rgb(var(--ps-soft-white));
+  border-color: rgb(var(--ps-soft-white));
+  color: rgb(var(--ps-navy));
+}
+
+.dark .ps-button:hover {
+  background: rgb(var(--ps-cool-gray));
+  border-color: rgb(var(--ps-cool-gray));
+}
+
+.dark .ps-button--ghost {
+  background: transparent;
+  color: rgb(var(--ps-soft-white));
+  border-color: rgb(var(--ps-slate));
+}
+
+.dark .ps-button--ghost:hover {
+  border-color: rgb(var(--ps-light-steel));
+}
+
+/* --- Hero -----------------------------------------------------------------
+   Words on the left, the ring's geometry on the right, and a decorative
+   image fading in behind it. The image is illustration, never photography
+   presented as Andrew's (see the brand guide). */
+
+.ps-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  padding: clamp(2rem, 6vw, 4.5rem) 0 var(--ps-space-section);
+}
+
+.ps-hero__backdrop {
+  position: absolute;
+  inset: -2rem calc(50% - 50vw) 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ps-hero__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.55;
+  /* One soft ellipse centred behind the drawing: clear behind the words,
+     and no hard edge anywhere. */
+  -webkit-mask-image: radial-gradient(ellipse 60% 52% at 70% 48%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 52% at 70% 48%, #000 30%, transparent 100%);
+}
+
+.dark .ps-hero__backdrop img {
+  opacity: 0.18;
+  filter: grayscale(0.4);
+}
+
+.ps-hero__text {
+  max-width: 38rem;
+}
+
+.ps-hero__title {
+  margin: 1rem 0 1.25rem;
+  font-family: var(--parlette-display);
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: rgb(var(--ps-navy));
+  text-wrap: balance;
+}
+
+.dark .ps-hero__title {
+  color: rgb(var(--ps-soft-white));
+}
+
+.ps-hero__lede {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: rgb(var(--ps-slate));
+  max-width: 34rem;
+}
+
+.dark .ps-hero__lede {
+  color: rgb(var(--color-neutral-300));
+}
+
+.ps-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.ps-hero__ring {
+  display: none;
+  color: rgb(var(--ps-steel));
+}
+
+.dark .ps-hero__ring {
+  color: rgb(var(--ps-light-steel));
+}
+
+@media (min-width: 900px) {
+  .ps-hero {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+  }
+  .ps-hero__ring {
+    display: block;
+    justify-self: end;
+    width: min(100%, 22rem);
+    opacity: 0.9;
+  }
+}
+
+/* --- Pillars --------------------------------------------------------------
+   The three things the studio does, ruled above like the ledger, no cards. */
+
+.ps-pillars {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 0 0 var(--ps-space-section);
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ps-rule);
+}
+
+.ps-pillar {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.25rem 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--ps-rule);
+}
+
+.ps-pillar .icon,
+.ps-pillar svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: rgb(var(--ps-steel));
+  grid-row: span 2;
+}
+
+.dark .ps-pillar svg {
+  color: rgb(var(--ps-light-steel));
+}
+
+.ps-pillar__name {
+  margin: 0;
+  font-family: var(--parlette-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: var(--ps-label-tracking);
+  font-stretch: var(--ps-label-stretch);
+  text-transform: uppercase;
+  color: rgb(var(--ps-navy));
+}
+
+.dark .ps-pillar__name {
+  color: rgb(var(--ps-soft-white));
+}
+
+.ps-pillar__line {
+  margin: 0;
+  color: rgb(var(--ps-slate));
+}
+
+.dark .ps-pillar__line {
+  color: rgb(var(--color-neutral-300));
+}
+
+@media (min-width: 768px) {
+  .ps-pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid var(--ps-rule);
+  }
+  .ps-pillar {
+    border-bottom: 0;
+    padding: 1.75rem 1.5rem 1.75rem 0;
+  }
+  .ps-pillar + .ps-pillar {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--ps-rule);
+  }
+}
+
+/* --- Philosophy line ------------------------------------------------------ */
+
+.ps-philosophy {
+  margin: var(--ps-space-section) 0 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ps-rule);
+  text-align: center;
+}
+
+.ps-philosophy p {
+  margin: 0;
+  font-family: var(--parlette-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: var(--ps-label-tracking);
+  font-stretch: var(--ps-label-stretch);
+  text-transform: uppercase;
+  color: rgb(var(--ps-steel));
+}
+
+.dark .ps-philosophy p {
+  color: rgb(var(--ps-light-steel));
+}
+
+/* --- Cards ----------------------------------------------------------------
+   For the few places a grid of separate things beats a table: a hairline
+   box, no shadow, a border that firms up on hover. */
+
+.ps-card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--ps-rule);
+  border-radius: var(--ps-radius);
+  background: rgb(255 255 255 / 0.6);
+  text-decoration: none;
+  transition: border-color 120ms ease;
+}
+
+a.ps-card:hover {
+  border-color: rgb(var(--ps-steel));
+}
+
+.dark .ps-card {
+  background: rgb(255 255 255 / 0.02);
+}
+
+/* --- The ledger, in Studio type ------------------------------------------
+   Same table as the shared layer; labels move from Plex Mono to the STUDIOS
+   treatment, and the one live row takes Signal Blue instead of clay. */
+
+.parlette-ledger caption,
+.parlette-ledger th {
+  font-family: var(--parlette-display);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  font-stretch: var(--ps-label-stretch);
+  color: rgb(var(--ps-steel));
+}
+
+.parlette-ledger th {
+  border-bottom-color: rgb(var(--ps-steel) / 0.6);
+}
+
+.parlette-ledger__name {
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Project names stay navy: the one blue in the table belongs to "live". */
+.parlette-ledger__name a {
+  color: rgb(var(--ps-navy));
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--ps-cool-gray));
+  transition: border-color 120ms ease;
+}
+
+.parlette-ledger__name a:hover {
+  border-bottom-color: rgb(var(--ps-navy));
+}
+
+.dark .parlette-ledger__name a {
+  color: rgb(var(--ps-soft-white));
+  border-bottom-color: rgb(var(--ps-slate));
+}
+
+.dark .parlette-ledger__name a:hover {
+  border-bottom-color: rgb(var(--ps-soft-white));
+}
+
+.parlette-ledger__form,
+.parlette-ledger__status {
+  font-family: var(--parlette-display);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.parlette-ledger__status--live {
+  color: rgb(var(--color-primary-600));
+  font-weight: 600;
+}
+
+.dark .parlette-ledger caption,
+.dark .parlette-ledger th {
+  color: rgb(var(--ps-light-steel));
+}
+
+.dark .parlette-ledger__status--live {
+  color: rgb(var(--color-primary-400));
+}
+
+/* --- Brand page swatches and specimens (content/brand.md) ----------------- */
+
+.ps-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ps-swatch {
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.ps-swatch__chip {
+  display: block;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--ps-rule);
+  border-radius: var(--ps-radius);
+  margin-bottom: 0.6rem;
+}
+
+.ps-swatch__name {
+  display: block;
+  font-family: var(--parlette-display);
+  font-weight: 600;
+  color: rgb(var(--ps-navy));
+}
+
+.dark .ps-swatch__name {
+  color: rgb(var(--ps-soft-white));
+}
+
+.ps-swatch__hex {
+  font-family: var(--parlette-mono);
+  font-size: 0.78rem;
+  color: rgb(var(--ps-slate));
+}
+
+.dark .ps-swatch__hex {
+  color: rgb(var(--color-neutral-300));
+}
+
+.ps-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.ps-logo-tile {
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 2rem 1.5rem 1rem;
+  border: 1px solid var(--ps-rule);
+  border-radius: var(--ps-radius);
+}
+
+.ps-logo-tile img {
+  max-height: 7rem;
+  width: auto;
+  margin: 0;
+}
+
+.ps-logo-tile--dark {
+  background: rgb(var(--ps-navy));
+  border-color: rgb(var(--ps-navy));
+}
+
+.ps-logo-tile--light {
+  background: rgb(var(--ps-soft-white));
+}
+
+/* On the dark theme the navy tile matches the page; a slate edge keeps it a tile. */
+.dark .ps-logo-tile--dark {
+  border-color: rgb(var(--ps-slate));
+}
+
+.ps-logo-tile figcaption {
+  font-family: var(--parlette-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  font-stretch: var(--ps-label-stretch);
+  text-transform: uppercase;
+  color: rgb(var(--ps-steel));
+}
+
+.ps-logo-tile--dark figcaption {
+  color: rgb(var(--ps-light-steel));
+}
+
+.ps-specimen {
+  margin: 1rem 0 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--ps-rule);
+  border-bottom: 1px solid var(--ps-rule);
+}
+
+.ps-specimen__display {
+  margin: 0 0 0.5rem;
+  font-family: var(--parlette-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: rgb(var(--ps-navy));
+}
+
+.dark .ps-specimen__display {
+  color: rgb(var(--ps-soft-white));
+}
+
+.ps-specimen__body {
+  margin: 0;
+  font-family: var(--parlette-body);
+  font-size: 1.05rem;
+}
+
+.ps-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.ps-icons li {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ps-icons svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: rgb(var(--ps-navy));
+}
+
+.dark .ps-icons svg {
+  color: rgb(var(--ps-soft-white));
+}
+
+.ps-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-button,
+  .ps-card,
+  .prose :where(a) {
+    transition: none;
+  }
+}
