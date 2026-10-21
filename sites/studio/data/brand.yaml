@@ -1,0 +1,25 @@
+# Brand colours for the brand page. The source of truth is brand/README.md;
+# keep the two in step.
+colours:
+  - { name: Midnight Navy, hex: "#0F1720", role: "Logo, headings, dark backgrounds" }
+  - { name: Deep Slate, hex: "#334155", role: "Body and secondary text" }
+  - { name: Steel Blue, hex: "#64748B", role: "The ring, STUDIOS, graphics" }
+  - { name: Light Steel, hex: "#94A3B8", role: "Steel on dark backgrounds" }
+  - { name: Cool Gray, hex: "#D1D5DB", role: "Borders and rules" }
+  - { name: Soft White, hex: "#F8FAFC", role: "Light backgrounds" }
+  - { name: Signal Blue, hex: "#3B82F6", role: "Accent: links (#2563EB as text), focus. Never in the logo" }
+logos:
+  - { file: parlette-studios-lockup.svg, label: Primary lockup, tile: light }
+  - { file: parlette-studios-lockup-reverse.svg, label: Primary lockup, reverse, tile: dark }
+  - { file: parlette-studios-horizontal.svg, label: Horizontal, tile: light }
+  - { file: parlette-studios-horizontal-reverse.svg, label: Horizontal, reverse, tile: dark }
+  - { file: parlette-studios-badge.svg, label: Circle badge, tile: light }
+  - { file: parlette-studios-badge-reverse.svg, label: Circle badge, reverse, tile: dark }
+  - { file: parlette-studios-mark.svg, label: Mark, tile: light }
+  - { file: parlette-studios-mark-reverse.svg, label: Mark, reverse, tile: dark }
+  - { file: parlette-studios-mark-navy.svg, label: One colour, tile: light }
+  - { file: parlette-studios-mark-white.svg, label: One colour, white, tile: dark }
+icons:
+  - { name: ps-software, label: Software }
+  - { name: ps-photography, label: Photography }
+  - { name: ps-digital, label: Digital creation }

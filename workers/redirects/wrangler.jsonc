@@ -1,0 +1,22 @@
+{
+  // Every hostname that should not serve its own content. The table lives in
+  // src/redirect.js; these routes only decide which names reach the Worker.
+  //
+  // A route for a domain Cloudflare does not hold will fail the deploy, so
+  // comment out any line for a domain that is not registered yet.
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "parlette-redirects",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-01",
+  "routes": [
+    { "pattern": "parlette.net", "custom_domain": true },
+    { "pattern": "baseball.parlette.net", "custom_domain": true },
+    { "pattern": "andrewparlette.com", "custom_domain": true },
+    { "pattern": "www.andrewparlette.com", "custom_domain": true },
+    { "pattern": "parlettestudios.com", "custom_domain": true },
+    { "pattern": "www.parlettestudios.com", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,16 @@
+# The parlette.net network, rendered by partials/parlette/network.html into the
+# footer of every site. `key` must match params.parlette.site in a site's config
+# for that site to be marked as the current one.
+network:
+  - key: www
+    name: parlette.net
+    url: https://www.parlette.net/
+    what: the front door
+  - key: andrew
+    name: andrew.parlette.net
+    url: https://andrew.parlette.net/
+    what: coaching, writing, photos
+  - key: studio
+    name: studio.parlette.net
+    url: https://studio.parlette.net/
+    what: Parlette Studios — software

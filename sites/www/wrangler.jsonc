@@ -1,0 +1,18 @@
+{
+  // Assets-only Worker: no script, just the built site. Deployed from this
+  // directory after `hugo --gc --minify` has written ./public.
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "www-parlette-net",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./public",
+    // Hugo writes a real 404.html; serve it rather than a bare status line.
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "www.parlette.net", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

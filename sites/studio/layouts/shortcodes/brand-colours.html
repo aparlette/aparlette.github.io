@@ -1,0 +1,11 @@
+{{/* Colour swatches for the brand page, from data/brand.yaml. */}}
+<ul class="ps-swatches not-prose">
+  {{ range hugo.Data.brand.colours }}
+    <li class="ps-swatch">
+      <span class="ps-swatch__chip" style="background: {{ .hex | safeCSS }}"></span>
+      <span class="ps-swatch__name">{{ .name }}</span>
+      <span class="ps-swatch__hex">{{ .hex }}</span>
+      <span class="block">{{ .role }}</span>
+    </li>
+  {{ end }}
+</ul>

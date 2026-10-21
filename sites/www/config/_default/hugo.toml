@@ -1,0 +1,16 @@
+baseURL = "https://www.parlette.net/"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+enableEmoji = true
+
+buildDrafts = false
+buildFuture = false
+
+[outputs]
+  home = ["HTML"]   # no RSS or search index: this is a one-page front door
+
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5

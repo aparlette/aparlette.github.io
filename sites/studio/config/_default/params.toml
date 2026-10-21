@@ -1,0 +1,52 @@
+colorScheme = "studio"            # Parlette Studios scheme, see assets/css/schemes/ and brand/README.md
+logo = "img/logo.svg"              # horizontal lockup, made by brand/logo/src/build.sh
+disableTextInHeader = true         # the logo already says Parlette Studios
+defaultSocialImage = "img/social.png"
+defaultAppearance = "light"
+autoSwitchAppearance = true
+
+enableSearch = true
+enableCodeCopy = true
+enableStructuredBreadcrumbs = true
+
+mainSections = ["work"]
+
+disableImageOptimization = false
+highlightCurrentMenuArea = true
+smartTOC = true
+
+[header]
+  layout = "fixed"
+
+[footer]
+  showMenu = true
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+[homepage]
+  layout = "custom"   # partials/home/custom.html: hero, pillars, then the ledger
+  showRecent = false
+
+[article]
+  showDate = false
+  showAuthor = false
+  showBreadcrumbs = true
+  showHeadingAnchors = true
+  showPagination = false
+  showReadingTime = false
+  showTableOfContents = false
+  showTaxonomies = false
+  showWordCount = false
+  sharingLinks = []
+
+[list]
+  showBreadcrumbs = true
+  showSummary = true
+  showTableOfContents = false
+  groupByYear = false
+  cardView = false
+
+[parlette]
+  site = "studio"

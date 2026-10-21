@@ -1,0 +1,40 @@
+/* Parlette scheme — the scorebook.
+   Primary  : infield green, the pencil that keeps the book.
+   Secondary: infield clay, used sparingly and never as a background.
+   Neutral  : printed form stock, faintly green-gray. Deliberately not cream. */
+:root {
+  --color-neutral: 252, 252, 250;
+  /* Paper + pencil */
+  --color-neutral-50: 246, 246, 243;
+  --color-neutral-100: 238, 239, 235;
+  --color-neutral-200: 224, 226, 221;
+  --color-neutral-300: 200, 204, 198;
+  --color-neutral-400: 154, 160, 154;
+  --color-neutral-500: 112, 119, 114;
+  --color-neutral-600: 84, 91, 87;
+  --color-neutral-700: 58, 65, 61;
+  --color-neutral-800: 30, 37, 34;
+  --color-neutral-900: 18, 23, 21;
+  /* Infield green */
+  --color-primary-50: 236, 244, 241;
+  --color-primary-100: 209, 230, 223;
+  --color-primary-200: 168, 208, 194;
+  --color-primary-300: 118, 180, 159;
+  --color-primary-400: 74, 148, 125;
+  --color-primary-500: 45, 119, 97;
+  --color-primary-600: 31, 95, 75;
+  --color-primary-700: 25, 76, 61;
+  --color-primary-800: 21, 60, 49;
+  --color-primary-900: 16, 43, 35;
+  /* Infield clay */
+  --color-secondary-50: 250, 240, 234;
+  --color-secondary-100: 244, 222, 209;
+  --color-secondary-200: 233, 190, 165;
+  --color-secondary-300: 219, 154, 118;
+  --color-secondary-400: 201, 118, 78;
+  --color-secondary-500: 180, 85, 45;
+  --color-secondary-600: 154, 70, 36;
+  --color-secondary-700: 124, 57, 30;
+  --color-secondary-800: 98, 46, 25;
+  --color-secondary-900: 74, 36, 20;
+}

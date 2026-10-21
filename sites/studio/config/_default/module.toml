@@ -1,0 +1,27 @@
+[[imports]]
+  path = "github.com/nunocoracao/blowfish/v2"
+
+[[imports]]
+  path = "github.com/aparlette/parlette-sites/shared"
+
+# The logo files in brand/logo/ are published at /brand/logo/ so the brand page
+# can show them and people can download them. Declaring a static mount replaces
+# Hugo's default one, so the site's own static/ is mounted explicitly too.
+[[mounts]]
+  source = "static"
+  target = "static"
+
+[[mounts]]
+  source = "brand/logo"
+  target = "static/brand/logo"
+  files = ["! src/**"]
+
+# The photo backdrop masters are image-processed into web sizes, so they are
+# mounted as assets. As with static, that replaces the default assets mount.
+[[mounts]]
+  source = "assets"
+  target = "assets"
+
+[[mounts]]
+  source = "brand/imagery/photos"
+  target = "assets/photos"

@@ -1,0 +1,36 @@
+colorScheme = "parlette"
+defaultAppearance = "light"
+autoSwitchAppearance = true
+
+# A single page needs no search index and no code-copy buttons.
+enableSearch = false
+enableCodeCopy = false
+
+disableImageOptimization = false
+
+[header]
+  layout = "basic"
+
+[footer]
+  showMenu = false
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = true
+  showScrollToTop = false
+
+[homepage]
+  layout = "page"      # renders content/_index.md and nothing else
+  showRecent = false
+
+[article]
+  showDate = false
+  showAuthor = false
+  showBreadcrumbs = false
+  showReadingTime = false
+  showTableOfContents = false
+  showTaxonomies = false
+  showPagination = false
+  sharingLinks = []
+
+[parlette]
+  site = "www"

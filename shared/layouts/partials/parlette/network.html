@@ -1,0 +1,22 @@
+{{/* The network strip: one scorecard line naming every parlette.net site and
+     marking the one you are standing on. Shared by all of them. */}}
+{{ $current := site.Params.parlette.site }}
+{{ with hugo.Data.parlette.network }}
+  <nav class="parlette-network" aria-label="Parlette sites">
+    <span class="parlette-network__label">parlette.net</span>
+    <ul class="parlette-network__list">
+      {{ range . }}
+        {{ $isCurrent := eq .key $current }}
+        <li
+          class="parlette-network__item{{ if $isCurrent }} parlette-network__item--current{{ end }}">
+          <span class="parlette-network__mark" aria-hidden="true">{{ if $isCurrent }}&#9679;{{ else }}&#9675;{{ end }}</span>
+          {{ if $isCurrent }}
+            <span aria-current="page">{{ .name }} &mdash; {{ .what }}</span>
+          {{ else }}
+            <span><a href="{{ .url }}">{{ .name }}</a> &mdash; {{ .what }}</span>
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+{{ end }}

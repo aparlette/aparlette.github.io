@@ -1,0 +1,10 @@
+{{/* Logo variations for the brand page, linking to the files themselves. */}}
+<div class="ps-logo-grid not-prose">
+  {{ range hugo.Data.brand.logos }}
+    {{ $url := printf "brand/logo/%s" .file | relURL }}
+    <figure class="ps-logo-tile ps-logo-tile--{{ .tile }}">
+      <a href="{{ $url }}"><img src="{{ $url }}" alt="Parlette Studios — {{ .label }}" class="nozoom"></a>
+      <figcaption>{{ .label }}</figcaption>
+    </figure>
+  {{ end }}
+</div>

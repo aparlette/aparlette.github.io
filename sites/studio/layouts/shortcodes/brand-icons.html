@@ -1,0 +1,6 @@
+{{/* The Studio icon set, drawn from the mark's geometry. */}}
+<ul class="ps-icons not-prose">
+  {{ range hugo.Data.brand.icons }}
+    <li>{{ partial "icon.html" .name }}<span class="ps-label">{{ .label }}</span></li>
+  {{ end }}
+</ul>

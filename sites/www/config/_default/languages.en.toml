@@ -1,0 +1,15 @@
+locale = "en"
+label = "English"
+weight = 1
+title = "parlette.net"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "January 2, 2006"
+  description = "The parlette.net front door — where Andrew Parlette's sites live."
+
+[params.author]
+  name = "Andrew Parlette"
+  email = "andrew@parlette.net"

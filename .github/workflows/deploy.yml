@@ -1,0 +1,138 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: 0.164.0
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Which targets does this push actually affect? A change under sites/studio/
+  # deploys studio alone; a change to the shared brand module, the scripts, or
+  # this workflow deploys everything, because it can change every rendered page.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.plan.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: plan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          all='["andrew","www","studio","redirects"]'
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "targets=$all" >> "$GITHUB_OUTPUT"
+            echo "deploying everything (manual run or first push)"
+            exit 0
+          fi
+
+          base="$BEFORE"
+          if [ -z "$base" ] || ! git cat-file -e "${base}^{commit}" 2>/dev/null; then
+            base="HEAD~1"
+          fi
+          changed=$(git diff --name-only "$base" HEAD)
+          echo "changed files:"; echo "$changed"
+
+          # Anything shared rebuilds all of it.
+          if echo "$changed" | grep -qE '^(shared/|scripts/|package(-lock)?\.json|\.github/workflows/)'; then
+            echo "targets=$all" >> "$GITHUB_OUTPUT"
+            echo "shared change -> deploying everything"
+            exit 0
+          fi
+
+          targets=()
+          for site in andrew www studio; do
+            if echo "$changed" | grep -q "^sites/$site/"; then targets+=("$site"); fi
+          done
+          if echo "$changed" | grep -q '^workers/redirects/'; then targets+=("redirects"); fi
+
+          if [ ${#targets[@]} -eq 0 ]; then
+            echo "targets=[]" >> "$GITHUB_OUTPUT"
+            echo "nothing to deploy"
+          else
+            json=$(printf '"%s",' "${targets[@]}")
+            echo "targets=[${json%,}]" >> "$GITHUB_OUTPUT"
+            echo "deploying: ${targets[*]}"
+          fi
+
+  # The redirect table is the one piece with logic in it, so it is the one
+  # piece with tests. They gate every deploy, not just the Worker's own.
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node --test workers/redirects/test/*.test.js
+
+  deploy:
+    needs: [plan, test]
+    if: github.event_name == 'push' && needs.plan.outputs.targets != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(needs.plan.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # .Lastmod comes from git history
+
+      - name: Install Hugo
+        if: matrix.target != 'redirects'
+        run: |
+          wget -q -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Install Dart Sass
+        if: matrix.target != 'redirects'
+        run: sudo snap install dart-sass
+
+      # The theme is a Hugo Module, so the Go toolchain is required.
+      - uses: actions/setup-go@v5
+        if: matrix.target != 'redirects'
+        with:
+          go-version: stable
+
+      - name: Cache Hugo modules
+        if: matrix.target != 'redirects'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ${{ runner.temp }}/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('sites/*/go.sum') }}
+          restore-keys: ${{ runner.os }}-hugomod-
+
+      - name: Build ${{ matrix.target }}
+        if: matrix.target != 'redirects'
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+          TZ: America/New_York
+        run: hugo --gc --minify --cleanDestinationDir --source "sites/${{ matrix.target }}"
+
+      - name: Deploy ${{ matrix.target }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: ${{ matrix.target == 'redirects' && 'workers/redirects' || format('sites/{0}', matrix.target) }}

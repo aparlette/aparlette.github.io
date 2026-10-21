@@ -1,0 +1,14 @@
+{
+  "name": "parlette-sites",
+  "private": true,
+  "type": "module",
+  "description": "The parlette.net family of sites: Hugo sources, shared brand module, and Cloudflare Workers deploy config.",
+  "scripts": {
+    "test": "node --test workers/redirects/test/*.test.js",
+    "build": "./scripts/build.sh",
+    "dev": "./scripts/dev.sh"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

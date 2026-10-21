@@ -1,0 +1,19 @@
+locale = "en"
+label = "English"
+weight = 1
+title = "Parlette Studios"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "January 2, 2006"
+  description = "Parlette Studios — software and photography by Andrew Parlette."
+
+[params.author]
+  name = "Parlette Studios"
+  email = "andrew@parlette.net"
+  headline = "Software and photography"
+  links = [
+    { email = "mailto:andrew@parlette.net" },
+  ]
